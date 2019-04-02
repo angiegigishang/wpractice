@@ -3,89 +3,17 @@
 		<img src="../../.././assets/images/v2/leibie.png"/>
 		
 		<swiper class="swiper-slide" :options="swiperOption">
-			<swiper-slide>
-				<div class="productsquare">
-					<div class="productsquare1">
+			<swiper-slide v-for="(page, index) of pages" :key="index">
+				<div class="productsquare"
+				     v-for="item of page"
+				     :key="item.id">
+					<div class="productsquare1" :id="item.id">
 						<div class="product-title">
-			                产品1
+			                {{item.productTitle}}
 			            </div>
 			            <div class="middle-target">
 			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare2">
-						<div class="product-title">
-			                产品2
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare3">
-						<div class="product-title">
-			                产品3
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare4">
-						<div class="product-title">
-			                产品4
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="productsquare">
-					<div class="productsquare1">
-						<div class="product-title">
-			                产品5
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare2">
-						<div class="product-title">
-			                产品6
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare3">
-						<div class="product-title">
-			                产品7
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare4">
-						<div class="product-title">
-			                产品8
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
+			                    <p class="target-number">{{item.targetNumber}}</p>
 			                    <p class="unit">个</p>
 			            </div>
 					</div>
@@ -114,35 +42,67 @@ export default {
 				    stopOnLastSlide: false,
 				    disableOnInteraction: true,
 				}
-			}
+			},
+			list: [
+			    {
+					'id': 'productsquare1',
+					'productTitle': '产品1',
+					'targetNumber': '310'
+				}, {
+					'id': 'productsquare2',
+					'productTitle': '产品2',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare3',
+					'productTitle': '产品3',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare4',
+					'productTitle': '产品4',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare5',
+					'productTitle': '产品5',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare6',
+					'productTitle': '产品6',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare7',
+					'productTitle': '产品7',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare8',
+					'productTitle': '产品8',
+					'targetNumber': '2000'
+				}
+			]
+		}
+	},
+	computed: {
+		pages () {
+			var self = this
+            for(var key in this.list) {
+                var item = this.list[key] 
+                var targetlength = String(item.targetNumber).length;
+                var finishlength = 4;
+                if (targetlength !== finishlength) {
+                    item.targetNumber = (Array(finishlength).join('0') + item.targetNumber).slice(-finishlength)
+                }            
+            }
+			const pages = []
+			this.list.forEach( (item, index) => {
+				const page = Math.floor(index / 4)
+				if(!pages[page]) {
+					pages[page] = []
+				}
+				pages[page].push(item)
+			})
+			return pages
 		}
 	}
-    // props: {
-    //     list: Array
-    // },
-    // data () {
-    //     return {
-    //         finishnumber: 200
-    //     }
-    // },
-    // computed: {
-    //     finishnumbers () {
-    //         var self = this
-    //         for(var key in this.list) {
-    //             var item = this.list[key] 
-    //             var targetlength = String(item.targetnum).length;
-    //             var finishlength = String(item.finishnum).length;
-    //             if (targetlength !== finishlength) {
-    //                 item.finishnum = (Array(targetlength).join('0') + item.finishnum).slice(-targetlength)
-    //                 //self.changeNum(item.finishnum, targetlength)
-    //             }            
-    //         }
-    //         return this.list
-    //     }
-    // },
-    // methods: {
-      
-    // }
+   
 }
 
 </script>
@@ -167,32 +127,32 @@ export default {
     	height: 100%;
     	width: 100%;
     }
-    .productsquare1, .productsquare2, .productsquare3, .productsquare4 {
+    .productsquare1 {
     	position: absolute;
 		width: 40%;
     	height: 28%;
     	border-radius: 3px;
     	cursor: pointer;
     }
-    .productsquare1 {	
+    #productsquare1, #productsquare5 {	
     	border: 1px solid #6dabb9;
     	box-shadow: 0px 0px 0.1px 0.8px #6dabb9;	
     	top: 19%;
     	left: 7%;	
     }
-    .productsquare2 {
+    #productsquare2, #productsquare6 {
     	border: 1px solid #bb494d;
     	box-shadow: 0px 0px 0.1px 0.8px #bb494d;
     	top: 19%;
     	right: 7%;
     }
-    .productsquare3 {
+    #productsquare3, #productsquare7 {
     	border: 1px solid #6dabb9;
     	box-shadow: 0px 0px 0.1px 0.8px #6dabb9;
     	bottom: 14%;
     	right: 7%;
     }
-    .productsquare4 {
+    #productsquare4, #productsquare8 {
     	border: 1px solid #6dabb9;
     	box-shadow: 0px 0px 0.1px 0.8px #6dabb9;
     	bottom: 14%;

@@ -4,7 +4,7 @@
 	        <swiper-slide >
 	        	<div class="swiper-div">
 	        		<div class="top-left">
-	        			<product></product>
+	        			<product :list="productList"></product>
 	        		</div>
 	        		<div class="top-right">
 	        			<process></process>
@@ -70,7 +70,50 @@ export default {
 				//     stopOnLastSlide: false,
 				//     disableOnInteraction: true,
 				// }
-			}
+			},
+			productList:[
+				{
+					'id': 'productsquare1',
+					'productTitle': '产品1',
+					'targetNumber': '2000',
+					'finishNumber': '200'
+				}, {
+					'id': 'productsquare2',
+					'productTitle': '产品2',
+					'targetNumber': '2000',
+					'finishNumber': '137'
+				}, {
+					'id': 'productsquare3',
+					'productTitle': '产品3',
+					'targetNumber': '2000',
+					'finishNumber': '578'
+				}, {
+					'id': 'productsquare4',
+					'productTitle': '产品4',
+					'targetNumber': '2000',
+					'finishNumber': '0200'
+				}, {
+					'id': 'productsquare5',
+					'productTitle': '产品5',
+					'targetNumber': '2000',
+					'finishNumber': '0200'
+				}, {
+					'id': 'productsquare6',
+					'productTitle': '产品6',
+					'targetNumber': '2000',
+					'finishNumber': '0200'
+				}, {
+					'id': 'productsquare7',
+					'productTitle': '产品7',
+					'targetNumber': '2000',
+					'finishNumber': '0200'
+				}, {
+					'id': 'productsquare8',
+					'productTitle': '产品8',
+					'targetNumber': '2000',
+					'finishNumber': '0200'
+				}
+			]
 		}
 	},
 	mounted () {

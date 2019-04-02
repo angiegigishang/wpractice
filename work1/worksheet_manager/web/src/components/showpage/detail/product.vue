@@ -3,136 +3,28 @@
 		<img src="../../.././assets/images/v2/scjindu.png"/>
 		
 		<swiper class="swiper-slide" :options="swiperOption">
-			<swiper-slide>
-				<div class="productsquare">
-					<div class="productsquare1">
+			<swiper-slide v-for="(page, index) of pages" :key="index">
+				<div class="productsquare"
+				     v-for="item of page"
+				     :key="item.id">
+					<div class="productsquare1" :id="item.id">
 						<div class="product-title">
-			                产品1
+			                {{item.productTitle}}
 			            </div>
 			            <div class="middle-target">
 			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
+			                    <p class="target-number">{{item.targetNumber}}</p>
 			                    <p class="unit">个</p>
 			            </div>
 			            <div class="middle-finish">
 			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">0200</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare2">
-						<div class="product-title">
-			                产品2
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">0200</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare3">
-						<div class="product-title">
-			                产品3
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">0200</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare4">
-						<div class="product-title">
-			                产品4
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">2000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">0200</p>
+			                <p class="finish-number">{{item.finishNumber}}</p>
 			                <p class="unit">个</p>
 			            </div>
 					</div>
 				</div>
 			</swiper-slide>
-			<swiper-slide>
-				<div class="productsquare">
-					<div class="productsquare1">
-						<div class="product-title">
-			                产品5
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">2200</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare2">
-						<div class="product-title">
-			                产品6
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">2400</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare3">
-						<div class="product-title">
-			                产品7
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">2600</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-					<div class="productsquare4">
-						<div class="product-title">
-			                产品8
-			            </div>
-			            <div class="middle-target">
-			                    <p class="target-title">任务数<p>
-			                    <p class="target-number">3000</p>
-			                    <p class="unit">个</p>
-			            </div>
-			            <div class="middle-finish">
-			                <p class="finish-title">完成数</p>
-			                <p class="finish-number">2300</p>
-			                <p class="unit">个</p>
-			            </div>
-					</div>
-				</div>
-			</swiper-slide>
-		</swiper>
-		
+		</swiper>	
 	</div>
 </template>
 
@@ -145,6 +37,9 @@ export default {
     	swiper,
 	    swiperSlide
     },
+    props: {
+        list: Array
+    },
     data () {
 		return {
 			swiperOption: {
@@ -154,84 +49,31 @@ export default {
 				    stopOnLastSlide: false,
 				    disableOnInteraction: true,
 				}
-			},
-			list: [{
-				'id': '001',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '002',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '003',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '004',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '005',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '006',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '007',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, {
-				'id': '008',
-				'productTitle': '产品1',
-				'targetNumber': '2000',
-				'finishNumber': '0200'
-
-			}, ]
+			}
+		}
+	},
+	computed: {
+		pages () {
+			var self = this
+            for(var key in this.list) {
+                var item = this.list[key] 
+                var targetlength = String(item.targetNumber).length;
+                var finishlength = String(item.finishNumber).length;
+                if (targetlength !== finishlength) {
+                    item.finishNumber = (Array(targetlength).join('0') + item.finishNumber).slice(-targetlength)
+                }            
+            }
+			const pages = []
+			this.list.forEach( (item, index) => {
+				const page = Math.floor(index / 4)
+				if(!pages[page]) {
+					pages[page] = []
+				}
+				pages[page].push(item)
+			})
+			return pages
 		}
 	}
-    // props: {
-    //     list: Array
-    // },
-    // data () {
-    //     return {
-    //         finishnumber: 200
-    //     }
-    // },
-    // computed: {
-    //     finishnumbers () {
-    //         var self = this
-    //         for(var key in this.list) {
-    //             var item = this.list[key] 
-    //             var targetlength = String(item.targetnum).length;
-    //             var finishlength = String(item.finishnum).length;
-    //             if (targetlength !== finishlength) {
-    //                 item.finishnum = (Array(targetlength).join('0') + item.finishnum).slice(-targetlength)
-    //                 //self.changeNum(item.finishnum, targetlength)
-    //             }            
-    //         }
-    //         return this.list
-    //     }
-    // },
-    // methods: {
-      
-    // }
 }
 
 </script>
@@ -256,7 +98,7 @@ export default {
     	height: 100%;
     	width: 100%;
     }
-    .productsquare1 {
+    #productsquare1, #productsquare5 {
     	position: absolute;
     	border: 1px solid #6dabb9;
     	box-shadow: 0px 0px 0.1px 0.8px #6dabb9;
@@ -267,7 +109,7 @@ export default {
     	left: 7%;
     	cursor: pointer;
     }
-    .productsquare2 {
+    #productsquare2, #productsquare6 {
     	position: absolute;
     	border: 1px solid #bb494d;
     	box-shadow: 0px 0px 0.1px 0.8px #bb494d;
@@ -278,7 +120,7 @@ export default {
     	right: 7%;
     	cursor: pointer;
     }
-    .productsquare3 {
+    #productsquare3, #productsquare7 {
     	position: absolute;
     	border: 1px solid #6dabb9;
     	box-shadow: 0px 0px 0.1px 0.8px #6dabb9;
@@ -289,7 +131,7 @@ export default {
     	right: 7%;
     	cursor: pointer;
     }
-    .productsquare4 {
+    #productsquare4, #productsquare8 {
     	position: absolute;
     	border: 1px solid #6dabb9;
     	box-shadow: 0px 0px 0.1px 0.8px #6dabb9;
