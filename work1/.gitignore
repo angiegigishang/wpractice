@@ -1,0 +1,7 @@
+.idea/
+server/log/*
+*.pyc
+*.log
+*.tar.gz
+*.appid
+.vscode

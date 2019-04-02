@@ -1,0 +1,194 @@
+# 开始此设备的工单
+http://192.168.31.127:9000/procedure/start_worksheet POST
+输入：
+{
+"worksheet_id" : "2019032500001",
+"device_code": "device_3270101161",
+"person_id": "id1",
+"person_name": "wangqiang"
+}
+返回：
+{
+    "app_group": "包头一机厂app",
+    "app_name": "工序",
+    "code": "success",
+    "data": {
+        "worksheet_id": "2019032500001",
+        "device_code": "device_3270101161",
+        "bind_time": "2019-03-25 13:41:44",
+        "state": "running",
+        "person_id": "id1",
+        "person_name": "wangqiang"
+    },
+    "info": "success"
+}
+
+# 扫码记录
+http://192.168.31.127:9000/procedure/record_mark_time POST
+输入
+{
+"worksheet_id" : "2019032500001",
+"device_code": "device_3270101161",
+"procedure_code": "procedure_y_40",
+"mark": "1111215011111111111112345678",
+"mark_time": "2019-03-22 17:24:11",
+"state": "start"
+}
+返回
+{
+    "app_group": "包头一机厂app",
+    "app_name": "工序",
+    "code": "success",
+    "data": {
+        "code": "product_bisuoxiaoti",
+        "description": "",
+        "name": "闭锁销体",
+        "component_num": "12345678"
+    },
+    "info": "success worksheet"
+}
+
+# 获取工单和设备 页面的头部
+http://192.168.31.127:9000/procedure/get_device_worksheet_info/device_3270101161/2019032500001 GET
+{
+    "app_group": "包头一机厂app",
+    "app_name": "工序",
+    "code": "success",
+    "data": {
+        "device_info": {
+            "code": "device_3270101161",
+            "description": "卧式加工中心",
+            "name": "THM6363A"
+        },
+        "worksheet_info": {
+            "worksheet_id": "2019032500001",
+            "start_time": "2019-03-21",
+            "end_time": "2019-03-23",
+            "num": "6560"
+        },
+        "state": "running"
+    },
+    "info": "success"
+}
+
+# 获取设备工单数据
+http://192.168.31.127:9000/procedure/get_device_worksheet/device_3270101161/2019032500001 GET
+{
+    "app_group": "包头一机厂app",
+    "app_name": "工序",
+    "code": "success",
+    "data": {
+        "procedure_info": [
+            {
+                "name": "铣平面、圆弧、钻、铰孔",
+                "code": "procedure_y_40",
+                "description": "闭锁销体工序"
+            },
+            {
+                "name": "铣斜面、槽、钻孔",
+                "code": "procedure_y_45",
+                "description": "闭锁销体工序"
+            }
+        ],
+        "data": [
+            {
+                "mark": "1111215011111111111112345678",
+                "start": "2019-03-22 17:24:11",
+                "person_name": "wangqiang",
+                "person_id": "id1",
+                "product_info": {
+                    "code": "product_bisuoxiaoti",
+                    "description": "",
+                    "name": "闭锁销体",
+                    "component_num": "12345678"
+                },
+                "end": "2019-03-22 17:30:11",
+                "procedure_name": "铣平面、圆弧、钻、铰孔"
+            }
+        ]
+    },
+    "info": "success"
+}
+
+# 获取这个工单 这个设备 这个工序的所有扫码数据
+http://192.168.31.127:9000/procedure/get_history_data/device_3270101161/2019032500001/procedure_y_40 GET
+{
+    "app_group": "包头一机厂app",
+    "app_name": "工序",
+    "code": "success",
+    "data": [
+        {
+            "mark": "1111215011111111111112345678",
+            "start": "2019-03-22 17:24:11",
+            "person_name": "wangqiang",
+            "person_id": "id1",
+            "product_info": {
+                "code": "product_bisuoxiaoti",
+                "description": "",
+                "name": "闭锁销体",
+                "component_num": "12345678"
+            },
+            "end": "2019-03-22 17:30:11",
+            "procedure_name": "铣平面、圆弧、钻、铰孔"
+        }
+    ],
+    "info": "success"
+}
+
+
+worksheet_data里面的数据：
+> db.worksheet_data.findOne()
+{
+	"_id" : ObjectId("5c9849523b16472e2f0ad1c9"),
+	"worksheet_id" : "2019032500001",
+	"code" : "product_bisuoxiaoti",
+	"name" : "闭锁销体",
+	"num" : 6560,
+	"start_time" : "2019-03-21",
+	"end_time" : "2019-03-23",
+	"create_time" : "2019-03-25 11:21:54",
+	"device_31301010161" : {
+		"mark" : "",
+		"procedure_list" : [
+			"procedure_y_30"
+		],
+		"data" : {
+			"procedure_y_30" : [ ]
+		}
+	},
+	"device_3270101047" : {
+		"mark" : "",
+		"procedure_list" : [
+			"procedure_y_35"
+		],
+		"data" : {
+			"procedure_y_35" : [ ]
+		}
+	},
+	"device_3270101161" : {
+		"mark" : "1111215011111111111112345678",
+		"procedure_list" : [
+			"procedure_y_40",
+			"procedure_y_45"
+		],
+		"data" : {
+			"procedure_y_40" : [
+				{
+					"mark" : "1111215011111111111112345678",
+					"start" : "2019-03-22 17:24:11",
+					"person_name" : "wangqiang",
+					"person_id" : "id1",
+					"product_info" : {
+						"code" : "product_bisuoxiaoti",
+						"description" : "",
+						"name" : "闭锁销体",
+						"component_num" : "12345678"
+					},
+					"end" : "2019-03-22 17:30:11",
+					"procedure_name" : "铣平面、圆弧、钻、铰孔"
+				}
+			],
+			"procedure_y_45" : [ ]
+		}
+	}
+}
