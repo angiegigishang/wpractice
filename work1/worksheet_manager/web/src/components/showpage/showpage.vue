@@ -4,7 +4,7 @@
 	        <swiper-slide >
 	        	<div class="swiper-div">
 	        		<div class="top-left">
-	        			<product :list="productList"></product>
+	        			<product :list="productList" v-on:targetid="showProductid"></product>
 	        		</div>
 	        		<div class="top-right">
 	        			<process></process>
@@ -17,7 +17,7 @@
 	        <swiper-slide>
 	        	<div class="swiper-div">
 	        		<div class="top-left">
-	        			<classification></classification>
+	        			<classification :list="classificationList"></classification>
 	        		</div>
 	        		<div class="top-right">
 	        			<qitao></qitao>
@@ -113,11 +113,51 @@ export default {
 					'targetNumber': '2000',
 					'finishNumber': '0200'
 				}
+			],
+			classificationList:[
+			    {
+					'id': 'productsquare1',
+					'productTitle': '产品1',
+					'targetNumber': '310'
+				}, {
+					'id': 'productsquare2',
+					'productTitle': '产品2',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare3',
+					'productTitle': '产品3',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare4',
+					'productTitle': '产品4',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare5',
+					'productTitle': '产品5',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare6',
+					'productTitle': '产品6',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare7',
+					'productTitle': '产品7',
+					'targetNumber': '2000'
+				}, {
+					'id': 'productsquare8',
+					'productTitle': '产品8',
+					'targetNumber': '2000'
+				}
 			]
 		}
 	},
 	mounted () {
 		console.log(swiper, swiperSlide)
+	},
+	methods: {
+		showProductid (data) {
+			console.log(data);
+		}
 	}
 }
 </script>

@@ -6,8 +6,9 @@
 			<swiper-slide v-for="(page, index) of pages" :key="index">
 				<div class="productsquare"
 				     v-for="item of page"
-				     :key="item.id">
-					<div class="productsquare1" :id="item.id">
+				     :key="item.id"			     
+				     >
+					<div class="productsquare1" :id="item.id" @click="showid($event)">
 						<div class="product-title">
 			                {{item.productTitle}}
 			            </div>
@@ -73,6 +74,12 @@ export default {
 			})
 			return pages
 		}
+	},
+	methods: {
+		showid (e) {
+			let targetid = e.currentTarget.id;
+			this.$emit("targetid", targetid)
+		}
 	}
 }
 
@@ -97,6 +104,9 @@ export default {
     	position: absolute;
     	height: 100%;
     	width: 100%;
+    }
+    .productsquare1 {
+    	z-index: 3;
     }
     #productsquare1, #productsquare5 {
     	position: absolute;

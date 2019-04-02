@@ -28,10 +28,13 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
-    name: "product",
+    name: "classification",
     components: {
     	swiper,
 	    swiperSlide
+    },
+    props: {
+        list: Array
     },
     data () {
 		return {
@@ -42,42 +45,7 @@ export default {
 				    stopOnLastSlide: false,
 				    disableOnInteraction: true,
 				}
-			},
-			list: [
-			    {
-					'id': 'productsquare1',
-					'productTitle': '产品1',
-					'targetNumber': '310'
-				}, {
-					'id': 'productsquare2',
-					'productTitle': '产品2',
-					'targetNumber': '2000'
-				}, {
-					'id': 'productsquare3',
-					'productTitle': '产品3',
-					'targetNumber': '2000'
-				}, {
-					'id': 'productsquare4',
-					'productTitle': '产品4',
-					'targetNumber': '2000'
-				}, {
-					'id': 'productsquare5',
-					'productTitle': '产品5',
-					'targetNumber': '2000'
-				}, {
-					'id': 'productsquare6',
-					'productTitle': '产品6',
-					'targetNumber': '2000'
-				}, {
-					'id': 'productsquare7',
-					'productTitle': '产品7',
-					'targetNumber': '2000'
-				}, {
-					'id': 'productsquare8',
-					'productTitle': '产品8',
-					'targetNumber': '2000'
-				}
-			]
+			}
 		}
 	},
 	computed: {
